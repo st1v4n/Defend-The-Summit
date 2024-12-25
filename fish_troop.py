@@ -1,22 +1,22 @@
 """Рибата"""
 import troop
-import main_screen
 from water_attack import Water_attack
 
 fish_path_name = "Images/Troops/fish_troop.png"
 
 class Fish_troop(troop.Troop):
 
-    def __init__(self, attack_damage, attack_speed, positionX, positionY):
-        troop.Troop.__init__(self, attack_damage, attack_speed, positionX, positionY)
-        self.image = main_screen.pygame.image.load(fish_path_name)
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.positionX, self.positionY)
-        main_screen.troops_group.add(self)
+    ATTACK_DELAY = 100
+
+    def __init__(self, positionX, positionY):
+        troop.Troop.__init__(self, positionX, positionY, self.ATTACK_DELAY, fish_path_name, Water_attack)
 
     def update(self, cycles_count):
-        if cycles_count % self.attack_delay == 0:
-            self.attack = Water_attack(self.positionX, self.positionY, self.level)
+        if self.level >= troop.SUPER_ACTIVATION_LEVEL and self.super_activated == False:
+            for ally_troop in troop.main_screen.troops_group.sprites():
+                ally_troop.level += 5
+                self.super_activated = True
+        return super().update(cycles_count)
 
         
 

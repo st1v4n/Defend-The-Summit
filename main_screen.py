@@ -5,30 +5,34 @@ pygame.init()
 attacks_group = pygame.sprite.Group()
 troops_group = pygame.sprite.Group()
 enemy_group = pygame.sprite.Group()
+animations_group = pygame.sprite.Group()
+buttons_group = pygame.sprite.Group()
+lifes_group = pygame.sprite.Group()
+button_pressed_group = pygame.sprite.Group()
+black_color = (0, 0, 0)
+main_font = pygame.font.Font(None, 24)
 checkpoints = [210, 400, 655, 640, 960]
-castle_health = 5
-SCREEN_WIDTH = 1000
+SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 680
 GAME_NAME = "Defend the summit"
 MAX_FRAMERATE = 60
 TOLERANCE = 25
+TEXT_DISPLAY = 50
 ATTACK_MOVEMENT_ADDITION = 4
-current_round = 1
+DEFAULT_SPAWN_X = 1000
+DEFAULT_SPAWN_Y = 30
+TROOP_COST = 50
+TROOPS_COUNT = 4
+BUTTON_WIDTH = 100
+BUTTON_HEIGHT = 80
+game_started = False
 cycles_count = 0
+zombie_spawn_count = 0
+coins = 300
+button_pressed = None
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption(GAME_NAME)
 clock = pygame.time.Clock()
 main_back = pygame.image.load("Images/Backgrounds/main_path.png")
 
-def get_closest_enemy():
-    sprites = enemy_group.sprites()
-    if len(sprites) == 0:
-        return None
-    max_distance = sprites[0].travelled_distance
-    closest_enemy = sprites[0]
-    for sprite in sprites:
-        if sprite.travelled_distance > max_distance:
-            max_distance = sprite.travelled_distance
-            closest_enemy = sprite
-    return closest_enemy
