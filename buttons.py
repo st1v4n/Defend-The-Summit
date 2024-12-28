@@ -15,20 +15,20 @@ class Button(main_screen.pygame.sprite.Sprite):
         main_screen.pygame.sprite.Sprite.__init__(self)
         self.positionX = positionX
         self.positionY = positionY
-        self.animation = None
+        self.animation = None # при натискане около бутона се появяват зелени рамки и стрелки, индикиращи, че сме го натиснали
         self.image = main_screen.pygame.image.load(image_path)
         self.rect = self.image.get_rect()
         self.rect.center = (self.positionX, self.positionY)
         main_screen.buttons_group.add(self)
 
-    def validate(self, mouse_x, mouse_y):
+    def validate(self, mouse_x, mouse_y): # дали натискане на мишката отговаря на бутон
         if mouse_x >= self.positionX - main_screen.BUTTON_WIDTH/2 and mouse_x <= self.positionX + main_screen.BUTTON_WIDTH/2:
             if mouse_y >= self.positionY - main_screen.BUTTON_HEIGHT/2 and mouse_y <= self.positionY + main_screen.BUTTON_HEIGHT/2:
                 return True
         return False
     
 
-class Button_Press_animation(main_screen.pygame.sprite.Sprite):
+class Button_Press_animation(main_screen.pygame.sprite.Sprite): # просто слага украса на бутоните, да знаем че е натиснат
 
     def __init__(self, positionX, positionY):
         main_screen.pygame.sprite.Sprite.__init__(self)

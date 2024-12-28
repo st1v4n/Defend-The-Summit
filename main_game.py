@@ -4,6 +4,7 @@ import logics
 import buttons
 import lifepoint
 
+# генерираме трите си бутона
 buttons.Buy_button(1100, 600)
 buttons.Upgrade_button(1100, 480)
 buttons.Max_upgrade_button(1100, 360)
@@ -19,28 +20,25 @@ def main_loop():
             if event.type == main_screen.pygame.QUIT:
                 main_screen.pygame.quit()
                 exit()
-            if event.type == main_screen.pygame.MOUSEBUTTONUP:
-                if main_screen.button_pressed is None:
+            if event.type == main_screen.pygame.MOUSEBUTTONUP: # при натискане на мишката
+                if main_screen.button_pressed is None: # дали преди това е била натисната
                     mouseCord = main_screen.pygame.mouse.get_pos()
                     for button in main_screen.buttons_group:
-                        if button.validate(mouseCord[0], mouseCord[1]):
+                        if button.validate(mouseCord[0], mouseCord[1]): # ако натискането отговаря на бутон
                             main_screen.button_pressed = button
                             main_screen.button_pressed.animation = buttons.Button_Press_animation(button.positionX, button.positionY)
                             break
-                else:
+                else: # ако вече е натиснат бутон, избираме на каква локация да се приложи неговото действие
                     mouseCord = main_screen.pygame.mouse.get_pos()
                     main_screen.button_pressed.update(mouseCord[0], mouseCord[1])
                     main_screen.button_pressed.animation.kill()
                     main_screen.button_pressed = None
-            if event.type == main_screen.pygame.KEYDOWN:
+            if event.type == main_screen.pygame.KEYDOWN: # чудовища започват да се spawn-ват, когато се натисне бутона 's' на клавиатурата 
                 if event.key == main_screen.pygame.K_s:
                     main_screen.game_started = True
         main_screen.screen.blit(main_screen.main_back, (0,0))
-        coins_to_display = main_screen.main_font.render("Coins: " + str(main_screen.coins), True, main_screen.black_color)
-        rectangle_coins = coins_to_display.get_rect()
-        rectangle_coins.center = (main_screen.TEXT_DISPLAY, main_screen.TEXT_DISPLAY)
-        main_screen.screen.blit(coins_to_display, rectangle_coins)
         main_screen.buttons_group.draw(main_screen.screen)
+        logics.display_coin_situation()
         if main_screen.game_started:
             logics.spawn_enemy()
         else:
@@ -64,8 +62,10 @@ def main_loop():
         main_screen.pygame.display.update()
         main_screen.cycles_count += 1
         main_screen.cycles_count %= 1000
-        main_screen.zombie_spawn_count += 1
-        main_screen.zombie_spawn_count %= 1000 
+        main_screen.enemy_spawn_count += 1
+        if main_screen.enemy_spawn_count >= 5000:
+            logics.boost_enemies()
+            main_screen.enemy_spawn_count = 1
         main_screen.clock.tick(main_screen.MAX_FRAMERATE)
 
 main_loop()

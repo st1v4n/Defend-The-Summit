@@ -13,8 +13,8 @@ class Phoenix_troop(troop.Troop):
         self.movement = 4
 
     def update(self, cycles_count):
-        self.positionX += self.movement
-        if self.positionX < 50 or self.positionX > 950:
+        self.positionX += self.movement # единствения войник, който се движи
+        if self.positionX < 50 or self.positionX > 950: # при достигане на границите на екрана, си сменя посоката
             self.movement = -self.movement
         self.rect.move_ip(self.movement, 0)
         return super().update(cycles_count)

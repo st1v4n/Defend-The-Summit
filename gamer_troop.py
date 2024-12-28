@@ -1,4 +1,4 @@
-"""геймъра"""
+"""геймъра, също войник"""
 
 import troop
 from light_attack import Light_attack
@@ -8,15 +8,16 @@ chinese_knight_path = "Images/Troops/chinese_knight.png"
 
 class Gamer_troop(troop.Troop):
 
-    ATTACK_DELAY = 75
+    ATTACK_DELAY = 61
 
     def __init__(self, positionX, positionY):
         troop.Troop.__init__(self, positionX, positionY, self.ATTACK_DELAY, gamer_path_name, Light_attack)
 
     def update(self, cycles_count):
         if self.level >= troop.SUPER_ACTIVATION_LEVEL and self.super_activated == False:
-            self.attack_type = Lightning_attack
+            self.attack_type = Lightning_attack # super-a на Геймъра е да става китаец, който мята шурикени
             self.image = troop.main_screen.pygame.image.load(chinese_knight_path)
+            self.attack_delay = 30 
             self.super_activated = True
         return super().update(cycles_count)
         
