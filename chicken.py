@@ -7,7 +7,7 @@ SPAWN_RATE = 2500
 
 class Chicken(enemy.Enemy):
 
-    HEALTH = 6400
+    HEALTH = 6200
 
     def __init__(self, positionX, positionY):
         enemy.Enemy.__init__(self, positionX, positionY, Chicken.HEALTH, -1, 0, chicken_path_name, True)

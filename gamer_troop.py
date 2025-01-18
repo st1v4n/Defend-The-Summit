@@ -8,7 +8,7 @@ chinese_knight_path = "Images/Troops/chinese_knight.png"
 
 class Gamer_troop(troop.Troop):
 
-    ATTACK_DELAY = 61
+    ATTACK_DELAY = 58
 
     def __init__(self, positionX, positionY):
         troop.Troop.__init__(self, positionX, positionY, self.ATTACK_DELAY, gamer_path_name, Light_attack)

@@ -3,7 +3,7 @@
 import enemy
 
 ghost_path_name = "Images/Enemies/ghost_enemy.png"
-SPAWN_RATE = 50 # spawn-ва се често, но пък не е много издръжлив
+SPAWN_RATE = 55 # spawn-ва се често, но пък не е много издръжлив
 
 class Ghost(enemy.Enemy):
 

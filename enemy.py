@@ -110,3 +110,6 @@ class Enemy(main_screen.pygame.sprite.Sprite):
         rectangle.center = (self.positionX, self.positionY + main_screen.TEXT_DISPLAY)
         main_screen.screen.blit(health_to_display, rectangle)
 
+    def get_direction(self):
+        return self.direction
+
