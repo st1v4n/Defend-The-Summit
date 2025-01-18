@@ -6,7 +6,7 @@ lava_attack_path = "Images/Effects/lava_attack.png"
 
 class Lava_attack(basic_attack.Basic_attack):
 
-    ATTACK_DAMAGE = 20
+    ATTACK_DAMAGE = 22
 
     def __init__(self, positionX, positionY, level):
         basic_attack.Basic_attack.__init__(self, positionX, positionY, level, self.ATTACK_DAMAGE, lava_attack_path, Fire_animation)

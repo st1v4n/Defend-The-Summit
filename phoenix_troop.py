@@ -6,7 +6,7 @@ phoenix_path_name = "Images/Troops/phoenix.png"
 
 class Phoenix_troop(troop.Troop):
 
-    ATTACK_DELAY = 2
+    ATTACK_DELAY = 1
 
     def __init__(self, positionX, positionY):
         troop.Troop.__init__(self, positionX, positionY, self.ATTACK_DELAY, phoenix_path_name, Lava_attack)
