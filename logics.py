@@ -10,6 +10,7 @@ import spider_troop
 import golem
 import goblin
 import chicken
+from animations import Snow_animation, Blood_animation
 
 
 def spawn_enemy():
@@ -108,6 +109,23 @@ def boost_enemies(): # на всеки 5000 цикъла, чудовищата �
         goblin.Goblin.HEALTH = main_screen.MAX_NUMBER / 2
     if chicken.Chicken.HEALTH >= main_screen.MAX_NUMBER:
         chicken.Chicken.HEALTH = main_screen.MAX_NUMBER / 2
+
+def freeze_potion_activation(): # ефекта на freeze potion-a
+    if main_screen.coins < main_screen.FREEZE_POTION_COST:
+        return None
+    main_screen.coins -= main_screen.FREEZE_POTION_COST
+    for enemy in main_screen.enemy_group:
+        Snow_animation(enemy.positionX, enemy.positionY)
+        enemy.move_x = int(enemy.move_x/2)
+        enemy.move_y = int(enemy.move_y/2)
+
+def damage_potion_activation(): # ефекта на damage potion-a
+    if main_screen.coins < main_screen.DAMAGE_POTION_COST:
+        return None
+    main_screen.coins -= main_screen.DAMAGE_POTION_COST
+    for enemy in main_screen.enemy_group:
+        Blood_animation(enemy.positionX, enemy.positionY)
+        enemy.health *= main_screen.DAMAGE_POTION_MULTIPLIER 
 
     
 

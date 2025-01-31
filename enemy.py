@@ -75,6 +75,7 @@ class Enemy(main_screen.pygame.sprite.Sprite):
         self.rect.move_ip(push_x, push_y)
         self.positionX += push_x
         self.positionY += push_y
+        self.travelled_distance -= abs(push_x + push_y)
 
     def _is_reaction_triggered(self): # проверява дали се е случила реакция
         if self.is_boss: # на босовете не могат да се случват реакции
@@ -112,4 +113,7 @@ class Enemy(main_screen.pygame.sprite.Sprite):
 
     def get_direction(self):
         return self.direction
+    
+    def get_health(self):
+        return self.health
 

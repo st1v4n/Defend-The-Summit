@@ -46,3 +46,6 @@ class Basic_attack(main_screen.pygame.sprite.Sprite):
         damage = self.attack_damage + (self.level*LEVEL_MULTIPLIER) # смята колко damage ще направи
         enemy.take_damage(type(self), damage) # и чудовището си обработва щетите
         self.kill() # накрая атаката умира, тъй като е изпълнила мисията си да удари чудовището
+
+    def get_attack_damage(self):
+        return self.attack_damage + (self.level*LEVEL_MULTIPLIER)

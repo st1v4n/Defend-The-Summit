@@ -8,6 +8,9 @@ import lifepoint
 buttons.Buy_button(1100, 600)
 buttons.Upgrade_button(1100, 480)
 buttons.Max_upgrade_button(1100, 360)
+# генерираме potion-ните
+buttons.Freeze_potion_button(50, 620)
+buttons.Damage_potion_button(150, 620)
 # по 3 живота
 lifepoint.Life(855, 340)
 lifepoint.Life(910, 340)

@@ -8,6 +8,8 @@ buy_button_path = "Images/Buttons/buy_button.png"
 upgrade_button_path = "Images/Buttons/upgrade_button.png"
 max_upgrade_button_path = "Images/Buttons/max_upgrade_button.png"
 button_press_animation_path = "Images/Buttons/button_press_animation.png"
+freeze_potion_button_path = "Images/Buttons/freeze_potion.png"
+damage_potion_button_path = "Images/Buttons/damage_potion.png"
 
 class Button(main_screen.pygame.sprite.Sprite):
 
@@ -66,5 +68,23 @@ class Max_upgrade_button(Button):
 
     def update(self, positionX, positionY):
         logics.max_upgrade(positionX, positionY)
+
+
+class Freeze_potion_button(Button): # нашата freeze potion-ка, която забавя всички чудовища на екрана с 50%
+
+    def __init__(self, positionX, positionY):
+        Button.__init__(self, positionX, positionY, freeze_potion_button_path)
+
+    def update(self, positionX, positionY):
+        logics.freeze_potion_activation()
+
+
+class Damage_potion_button(Button): # нашата damage potion-ка, която нанася щети на всички чудовища на екрана, равни на 30% от техния живот
+
+    def __init__(self, positionX, positionY):
+        Button.__init__(self, positionX, positionY, damage_potion_button_path)
+
+    def update(self, positionX, positionY):
+        logics.damage_potion_activation()
 
 

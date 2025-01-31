@@ -8,6 +8,8 @@ light_animation_path = "Images/Effects/lightning.png"
 dark_animation_path = "Images/Effects/venom.png"
 vaporise_animation_path = "Images/Effects/vaporise.png"
 void_animation_path = "Images/Effects/void.png"
+snow_animation_path = "Images/Effects/snow_animation.png"
+blood_animation_path = "Images/Effects/blood_animation.png"
 MAX_TRAVELLED_DISTANCE = 20
 
 
@@ -66,3 +68,16 @@ class Void_animation(Animation):
 
     def __init__(self, positionX, positionY):
         Animation.__init__(self, positionX, positionY, void_animation_path)
+
+
+class Snow_animation(Animation):
+
+    def __init__(self, positionX, positionY):
+        Animation.__init__(self, positionX, positionY, snow_animation_path)
+
+
+class Blood_animation(Animation):
+
+    def __init__(self, positionX, positionY):
+        Animation.__init__(self, positionX, positionY, blood_animation_path)
+

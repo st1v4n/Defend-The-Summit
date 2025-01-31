@@ -11,3 +11,6 @@ class Zombie(enemy.Enemy):
 
     def __init__(self, positionX, positionY):
         enemy.Enemy.__init__(self, positionX, positionY, Zombie.HEALTH, -3, 0, zombie_path_name)
+
+    def get_spawn_rate(self):
+        return SPAWN_RATE

@@ -3,7 +3,8 @@
 import unittest
 import enemy
 import water_attack # ще използвам water_attack, защото няма значение точно коя атака ползвам, тъй като всички ползват общ базов клас
-
+import logics
+import zombie # няма значение кое enemy зимаме, всички са с еднакъв базов клас, който така или иначе върши цялата работа
 
 class Project_tests(unittest.TestCase):
 
@@ -50,6 +51,24 @@ class Project_tests(unittest.TestCase):
         while direction == self.enemy.get_direction():
             self.enemy.update()
         self.assertEqual(self.enemy.get_direction(), "x")
+
+    def test_level_up(self): # ще тестваме дали се променя нивото на герой след използване на функционалността Max upgrade
+        # както знаем, в играта започваме с 420 coins, което по мой сметки значи, че ако купим един герой на
+        # начална цена 20, то ще ни останат 400, които ще стигнат за точно 8 upgrade-a и би трябвало нашия герой
+        # да стигне до ниво 9
+        new_troop = logics.buy_troop(0, 0)
+        logics.max_upgrade(0, 0)
+        self.assertEqual(new_troop.level, 9)
+        self.assertIsNone(logics.upgrade(0, 0)) # ако нямаме достатъчно пари, функцията връща None
+
+    def test_enemies_are_boosted(self): # ще тествам дали работи boost_enemies функцията, която прави чудовищата по Здрави и повишава техния spawn rate
+        before_zombie = zombie.Zombie(0, 0)
+        before_health = before_zombie.get_health()
+        before_spawn_rate = before_zombie.get_spawn_rate()
+        logics.boost_enemies()
+        after_zombie = zombie.Zombie(0, 0)
+        self.assertGreater(after_zombie.get_health(), before_health)
+        self.assertLess(after_zombie.get_spawn_rate(), before_spawn_rate) # да напомня, че spawn rate представлява delay-я, който трябва да изчакаме докато се spawn-не ново зомби
 
 
 if __name__ == "__main__":
