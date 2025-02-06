@@ -100,6 +100,7 @@ class Enemy(main_screen.pygame.sprite.Sprite):
         else:
             self.last_attacks[0] = self.last_attacks[1]
             self.last_attacks[1] = attack_type
+        if len(self.last_attacks) == 2:
             self._is_reaction_triggered()
         if self.health <= 0: # ако умре чудовище, играча получава 10 coins
             main_screen.coins += COINS_ON_DEATH
@@ -116,4 +117,7 @@ class Enemy(main_screen.pygame.sprite.Sprite):
     
     def get_health(self):
         return self.health
+    
+    def get_movement_speed(self):
+        return (self.move_x*self.move_x + self.move_y*self.move_y)**0.5
 

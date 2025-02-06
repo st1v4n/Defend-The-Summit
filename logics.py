@@ -125,7 +125,20 @@ def damage_potion_activation(): # ефекта на damage potion-a
     main_screen.coins -= main_screen.DAMAGE_POTION_COST
     for enemy in main_screen.enemy_group:
         Blood_animation(enemy.positionX, enemy.positionY)
-        enemy.health *= main_screen.DAMAGE_POTION_MULTIPLIER 
+        enemy.health *= main_screen.DAMAGE_POTION_MULTIPLIER
+
+def clean_up() : # функция, която се грижи да върне началните стойности на всички променливи
+    main_screen.game_started = False
+    main_screen.cycles_count = 0
+    main_screen.enemy_spawn_count = 0
+    main_screen.coins = 420
+    main_screen.button_pressed = None
+    main_screen.troop_buy_cost = 20
+
+def get_coin_balance():
+    return main_screen.coins
+
+
 
     
 
