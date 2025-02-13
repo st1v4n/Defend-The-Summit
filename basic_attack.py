@@ -18,6 +18,9 @@ class Basic_attack(main_screen.pygame.sprite.Sprite):
         self.attack_animation = attack_animation
 
     def update(self, enemy): # местенето на атаките и ако достигнат своята цел, правят damage, анимация и умират
+        if enemy is None:
+            self.kill()
+            return None
         diff_x = self.positionX - enemy.positionX # разликата в позициите на атаката и чудовището
         diff_y = self.positionY - enemy.positionY
         x, y = 0, 0 # използват се, за да се сметне отместването. Ако и двете си останат 0, значи сме достигнали целта
